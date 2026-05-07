@@ -1,0 +1,8 @@
+@if (service(); as svc) {
+  <article class="hs-service-detail">
+    <h2>{{ svc.title }}</h2>
+    <p>{{ svc.description }}</p>
+  </article>
+} @else {
+  <p>Detalle del servicio — pendiente</p>
+}

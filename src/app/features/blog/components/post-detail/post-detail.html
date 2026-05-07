@@ -1,0 +1,8 @@
+@if (post(); as p) {
+  <article class="hs-post-detail">
+    <h1>{{ p.title }}</h1>
+    <p>{{ p.excerpt }}</p>
+  </article>
+} @else {
+  <p>Detalle del artículo — pendiente</p>
+}

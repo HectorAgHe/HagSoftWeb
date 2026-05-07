@@ -1,0 +1,112 @@
+/* ============================================================
+ * Footer HagSoft — grid Bootstrap, dark, minimal
+ * ============================================================ */
+
+.hs-footer {
+  background-color: #041F0F;
+  border-top: 1px solid rgba(74, 222, 128, 0.10);
+  color: rgba(226, 232, 240, 0.78);
+  font-family: var(--hs-font-body);
+}
+
+/* ---- Brand ---- */
+.hs-footer__brand {
+  font-family: var(--hs-font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  color: var(--hs-blanco);
+  text-decoration: none;
+}
+
+.hs-footer__brand:hover {
+  color: var(--hs-verde-acento);
+}
+
+.hs-footer__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, var(--hs-verde-marca) 0%, var(--hs-verde-bosque) 100%);
+  color: var(--hs-blanco);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.hs-footer__name {
+  text-transform: uppercase;
+}
+
+.hs-footer__tagline {
+  color: rgba(226, 232, 240, 0.65);
+  font-size: 0.95rem;
+  max-width: 36ch;
+}
+
+/* ---- Headings de columna ---- */
+.hs-footer__heading {
+  font-family: var(--hs-font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hs-verde-acento);
+  margin-bottom: 1rem;
+}
+
+/* ---- Listas de links ---- */
+.hs-footer__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hs-footer__list a {
+  color: rgba(226, 232, 240, 0.75);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.18s ease;
+}
+
+.hs-footer__list a:hover,
+.hs-footer__list a:focus {
+  color: var(--hs-verde-acento);
+}
+
+/* ---- Redes sociales ---- */
+.hs-footer__social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background-color: rgba(74, 222, 128, 0.06);
+  color: rgba(226, 232, 240, 0.78);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.hs-footer__social-btn:hover,
+.hs-footer__social-btn:focus {
+  background-color: var(--hs-verde-marca);
+  color: var(--hs-blanco);
+  transform: translateY(-2px);
+}
+
+/* ---- Divider + bottom bar ---- */
+.hs-footer__divider {
+  border: 0;
+  height: 1px;
+  background-color: rgba(74, 222, 128, 0.10);
+  opacity: 1;
+}
+
+.hs-footer__bottom {
+  color: rgba(226, 232, 240, 0.55);
+  font-size: 0.85rem;
+}

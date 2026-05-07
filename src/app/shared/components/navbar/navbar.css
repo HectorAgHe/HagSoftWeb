@@ -1,0 +1,142 @@
+/* ============================================================
+ * Navbar HagSoft — sticky-top con efecto glass
+ * Casi todo el layout viene de Bootstrap; aquí solo color y marca.
+ * ============================================================ */
+
+.hs-navbar {
+  background-color: rgba(5, 46, 22, 0.78);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid rgba(74, 222, 128, 0.12);
+  padding-block: 0.85rem;
+}
+
+/* ---- Brand ---- */
+.hs-navbar__brand {
+  font-family: var(--hs-font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: var(--hs-blanco);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.hs-navbar__brand:hover,
+.hs-navbar__brand:focus {
+  color: var(--hs-verde-acento);
+}
+
+.hs-navbar__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.55rem;
+  background: linear-gradient(135deg, var(--hs-verde-marca) 0%, var(--hs-verde-bosque) 100%);
+  color: var(--hs-blanco);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  box-shadow: var(--hs-glow-marca);
+}
+
+.hs-navbar__name {
+  text-transform: uppercase;
+}
+
+/* ---- Links ---- */
+.hs-navbar__link {
+  font-family: var(--hs-font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: rgba(226, 232, 240, 0.78) !important;
+  padding: 0.5rem 0.95rem !important;
+  border-radius: var(--hs-radius-pill);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.hs-navbar__link:hover,
+.hs-navbar__link:focus {
+  color: var(--hs-blanco) !important;
+  background-color: rgba(74, 222, 128, 0.08);
+}
+
+.hs-navbar__link.active {
+  color: var(--hs-verde-acento) !important;
+  background-color: rgba(74, 222, 128, 0.10);
+}
+
+/* ---- CTA ---- */
+.hs-navbar__cta {
+  font-family: var(--hs-font-body);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.55rem 1.4rem;
+  color: var(--hs-blanco);
+  background: linear-gradient(135deg, var(--hs-verde-marca) 0%, var(--hs-verde-bosque) 100%);
+  border: none;
+  border-radius: var(--hs-radius-pill);
+  box-shadow: var(--hs-glow-marca);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hs-navbar__cta:hover,
+.hs-navbar__cta:focus {
+  color: var(--hs-blanco);
+  transform: translateY(-1px);
+  box-shadow: 0 0 28px rgba(74, 222, 128, 0.45);
+}
+
+/* ---- Hamburger custom (sin necesidad del SVG default de Bootstrap) ---- */
+.hs-navbar__toggler {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 0.5rem;
+  background: rgba(74, 222, 128, 0.06);
+  border-radius: var(--hs-radius-md);
+}
+
+.hs-navbar__toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(74, 222, 128, 0.25);
+}
+
+.hs-navbar__bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--hs-verde-acento);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.hs-navbar__toggler[aria-expanded="true"] .hs-navbar__bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hs-navbar__toggler[aria-expanded="true"] .hs-navbar__bar:nth-child(2) {
+  opacity: 0;
+}
+.hs-navbar__toggler[aria-expanded="true"] .hs-navbar__bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- Mobile: el menú colapsado tiene su propio fondo ---- */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    margin-top: 0.85rem;
+    padding: 0.75rem;
+    background-color: rgba(13, 44, 24, 0.95);
+    border: 1px solid rgba(74, 222, 128, 0.12);
+    border-radius: var(--hs-radius-md);
+  }
+
+  .hs-navbar__cta {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg sticky-top hs-navbar">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand hs-navbar__brand d-inline-flex align-items-center gap-2"
+       routerLink="/"
+       (click)="closeMenu()">
+      <span class="hs-navbar__mark">HS</span>
+      <span class="hs-navbar__name">HagSoft</span>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button type="button"
+            class="navbar-toggler border-0 hs-navbar__toggler"
+            (click)="toggleMenu()"
+            [attr.aria-expanded]="isMenuOpen()"
+            aria-controls="hs-navbar-menu"
+            aria-label="Abrir menú de navegación">
+      <span class="hs-navbar__bar"></span>
+      <span class="hs-navbar__bar"></span>
+      <span class="hs-navbar__bar"></span>
+    </button>
+
+    <!-- Menú colapsable -->
+    <div id="hs-navbar-menu"
+         class="collapse navbar-collapse"
+         [class.show]="isMenuOpen()">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+
+        <li class="nav-item">
+          <a class="nav-link hs-navbar__link"
+             routerLink="/"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }"
+             (click)="closeMenu()">
+            Inicio
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link hs-navbar__link"
+             routerLink="/servicios"
+             routerLinkActive="active"
+             (click)="closeMenu()">
+            Servicios
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link hs-navbar__link"
+             routerLink="/blog"
+             routerLinkActive="active"
+             (click)="closeMenu()">
+            Blog
+          </a>
+        </li>
+
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+          <a class="btn hs-navbar__cta"
+             routerLink="/contacto"
+             (click)="closeMenu()">
+            Cotizar
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>

@@ -1,0 +1,4 @@
+/* Layout raíz — nada custom, casi todo se resuelve con utilidades Bootstrap */
+.hs-app__main {
+  /* Compensación opcional si la navbar fuese fixed-top en lugar de sticky-top */
+}

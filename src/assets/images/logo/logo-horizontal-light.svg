@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 68" width="240" height="68" role="img" aria-label="HagSoft Solutions MX">
+  <rect x="4" y="4" width="52" height="54" rx="7" fill="#16A34A"/>
+  <rect x="8" y="10" width="44" height="34" rx="4" fill="#052E16"/>
+  <text x="14" y="31" font-family="'Space Mono', monospace" font-size="17" font-weight="700" fill="#4ADE80">HS</text>
+  <rect x="34" y="14" width="2.5" height="22" rx="1.2" fill="#166534"/>
+  <rect x="38" y="14" width="11" height="7" rx="2" fill="#4ADE80" opacity=".25"/>
+  <rect x="38" y="24" width="11" height="6" rx="2" fill="#4ADE80" opacity=".42"/>
+  <rect x="22" y="44" width="16" height="3" rx="1.5" fill="#16A34A"/>
+  <rect x="17" y="47" width="26" height="2.5" rx="1.2" fill="#166534"/>
+  <circle cx="50" cy="12" r="4.5" fill="#052E16"/>
+  <circle cx="50" cy="12" r="2.8" fill="#4ADE80"/>
+  <circle cx="50" cy="12" r="1.1" fill="#052E16"/>
+  <text x="68" y="32" font-family="'Space Mono', monospace" font-size="24" font-weight="700" fill="#052E16" letter-spacing="-0.5">Hag</text>
+  <text x="112" y="32" font-family="'Space Mono', monospace" font-size="24" font-weight="700" fill="#16A34A" letter-spacing="-0.5">Soft</text>
+  <text x="68" y="50" font-family="'Space Mono', monospace" font-size="8" fill="#16A34A" letter-spacing="2.5" opacity=".65">SOLUTIONS · MX</text>
+</svg>

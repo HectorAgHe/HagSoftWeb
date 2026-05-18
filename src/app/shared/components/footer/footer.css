@@ -23,18 +23,11 @@
   color: var(--hs-verde-acento);
 }
 
-.hs-footer__mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.9rem;
-  height: 1.9rem;
+.hs-footer__icon {
+  width: 32px;
+  height: 32px;
   border-radius: 0.5rem;
-  background: linear-gradient(135deg, var(--hs-verde-marca) 0%, var(--hs-verde-bosque) 100%);
-  color: var(--hs-blanco);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  display: block;
 }
 
 .hs-footer__name {

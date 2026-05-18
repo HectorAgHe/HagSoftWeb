@@ -22,6 +22,11 @@
   --hs-verde-acento: #4ADE80;
   --hs-verde-suave:  #DCFCE7;
 
+  /* Cian neon (acentos futuristas) */
+  --hs-cian:         #22D3EE;
+  --hs-cian-bright:  #67E8F9;
+  --hs-cian-glow:    rgba(34, 211, 238, 0.55);
+
   /* Neutros */
   --hs-negro:        #0F172A;
   --hs-gris-oscuro:  #1E293B;
@@ -90,11 +95,13 @@ body {
 }
 
 body {
-  background-color: var(--hs-verde-noche);
+  background: black;
+  margin-top: 0;
+  /* background-color: var(--hs-verde-noche);
   background-image:
-    radial-gradient(at 12% 0%, rgba(22, 101, 52, 0.18) 0, transparent 50%),
+    radial-gradient(at 12% 0%, rgba(101, 22, 22, 0.18) 0, transparent 50%),
     radial-gradient(at 88% 100%, rgba(74, 222, 128, 0.10) 0, transparent 55%);
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
 
 /* Titulares con tipografía display */

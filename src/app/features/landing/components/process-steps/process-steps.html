@@ -1,3 +1,76 @@
-<section class="hs-process-steps">
-  <h2>Cómo trabajamos — pendiente</h2>
+<section class="hs-process-steps py-5 py-lg-6">
+  <div class="container">
+
+    <!-- Encabezado -->
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <span class="hs-eyebrow">Cómo trabajamos</span>
+        <h2 class="hs-section-title mt-2 mb-3">
+          Cuatro pasos del Excel<br />
+          <span class="hs-text-acento">al control real</span>
+        </h2>
+        <p class="hs-section-lead">
+          Sin promesas vacías, sin sorpresas. Aquí está exactamente cómo
+          va el proceso de principio a fin.
+        </p>
+      </div>
+    </div>
+
+    <!-- Timeline de pasos -->
+    <div class="row g-4 align-items-stretch hs-process-steps__grid">
+      @for (step of steps; track step.number; let last = $last) {
+        <div class="col-12 col-md-6 col-xl-3">
+          <article class="hs-step h-100 d-flex flex-column p-4">
+            <div class="d-flex align-items-baseline gap-3 mb-3">
+              <span class="hs-step__number">{{ step.number }}</span>
+              <span class="hs-step__highlight">{{ step.highlight }}</span>
+            </div>
+            <h3 class="hs-step__title mb-2">{{ step.title }}</h3>
+            <p class="hs-step__description mb-0">{{ step.description }}</p>
+
+            @if (!last) {
+              <span class="hs-step__connector d-none d-xl-block" aria-hidden="true"></span>
+            }
+          </article>
+        </div>
+      }
+    </div>
+
+    <!-- Bloque de pagos -->
+    <div class="row justify-content-center mt-5 pt-4">
+      <div class="col-lg-10">
+        <div class="hs-payment p-4 p-lg-5">
+          <div class="row align-items-center g-4">
+
+            <div class="col-12 col-lg-4">
+              <span class="hs-eyebrow">Forma de pago</span>
+              <h3 class="hs-payment__title mt-2 mb-2">
+                Tres pagos.<br />
+                <span class="hs-text-acento">Cero sorpresas.</span>
+              </h3>
+              <p class="hs-payment__lead m-0">
+                El precio que acordamos es el precio que pagas.
+              </p>
+            </div>
+
+            <div class="col-12 col-lg-8">
+              <div class="row g-3">
+                @for (payment of payments; track payment.title) {
+                  <div class="col-12 col-sm-4">
+                    <div class="hs-payment__card text-center p-3 h-100">
+                      <p class="hs-payment__percent m-0">{{ payment.percent }}</p>
+                      <p class="hs-payment__milestone m-0">{{ payment.title }}</p>
+                      <p class="hs-payment__hint m-0">{{ payment.description }}</p>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>

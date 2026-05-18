@@ -1,6 +1,78 @@
-@if (service(); as svc) {
-  <article class="hs-service-card">
-    <h3 class="hs-service-card__title">{{ svc.title }}</h3>
-    <p class="hs-service-card__summary">{{ svc.summary }}</p>
-  </article>
-}
+@let svc = service();
+
+<article class="hs-service-card h-100 d-flex flex-column p-4">
+
+  <!-- Header: icono + categoría -->
+  <header class="d-flex align-items-center justify-content-between mb-3">
+    <div class="hs-service-card__icon" aria-hidden="true">
+      @switch (svc.icon) {
+        @case ('box') {
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        }
+        @case ('globe') {
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        }
+        @case ('shopping-cart') {
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+        }
+        @case ('layers') {
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
+        }
+      }
+    </div>
+
+    @if (svc.featured) {
+      <span class="hs-service-card__badge">Destacado</span>
+    }
+  </header>
+
+  <!-- Cuerpo -->
+  <h3 class="hs-service-card__title mb-2">{{ svc.title }}</h3>
+  <p class="hs-service-card__summary mb-3">{{ svc.summary }}</p>
+
+  <ul class="hs-service-card__features list-unstyled mb-4">
+    @for (feature of previewFeatures(); track feature) {
+      <li class="d-flex align-items-start gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="hs-service-card__check">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span>{{ feature }}</span>
+      </li>
+    }
+  </ul>
+
+  <!-- Footer: precio + CTA empuja al fondo -->
+  <footer class="mt-auto">
+    <div class="hs-service-card__price-row d-flex align-items-baseline justify-content-between mb-3">
+      <div>
+        <p class="hs-service-card__price-label m-0">{{ svc.price.suffix || 'Inversión' }}</p>
+        <p class="hs-service-card__price m-0">{{ svc.price.amount | currencyMx }}</p>
+      </div>
+    </div>
+    <a class="btn hs-service-card__cta w-100"
+       [routerLink]="['/servicios', svc.slug]">
+      Conocer detalles
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ms-2">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </footer>
+
+</article>

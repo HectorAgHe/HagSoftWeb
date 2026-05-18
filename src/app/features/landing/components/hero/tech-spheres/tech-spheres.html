@@ -1,0 +1,43 @@
+<div #host class="hs-tech-spheres__host" aria-hidden="true"></div>
+
+<!-- Indicador de hover en pantalla -->
+@if (hoveredTech(); as tech) {
+  <div class="hs-tech-spheres__hover" [style.--tech-color]="tech.color">
+    <span class="hs-tech-spheres__hover-dot"></span>
+    {{ tech.name }}
+  </div>
+}
+
+<!-- Hint inicial: arrastra o haz click -->
+@if (hintVisible() && !selectedTech()) {
+  <div class="hs-tech-spheres__hint" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 12l4-4 4 4"/>
+      <path d="M11 18l4-4 4 4"/>
+      <path d="M9 6l-4 4 4 4"/>
+      <path d="M3 10h12"/>
+    </svg>
+    Arrastra o haz click en una tech
+  </div>
+}
+
+<!-- Tooltip detallado al hacer click -->
+@if (selectedTech(); as tech) {
+  <div class="hs-tech-spheres__tooltip"
+       [style.--tech-color]="tech.color"
+       role="dialog"
+       aria-live="polite">
+    <button type="button"
+            class="hs-tech-spheres__tooltip-close"
+            (click)="closeTooltip()"
+            aria-label="Cerrar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <p class="hs-tech-spheres__tooltip-category">{{ tech.category }}</p>
+    <p class="hs-tech-spheres__tooltip-name">{{ tech.name }}</p>
+    <p class="hs-tech-spheres__tooltip-desc">{{ tech.description }}</p>
+  </div>
+}

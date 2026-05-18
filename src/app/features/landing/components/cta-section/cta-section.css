@@ -1,1 +1,136 @@
-/* Estilos cta-section — pendiente */
+/* ============================================================
+ * CTA-section — cierre con compromisos
+ * ============================================================ */
+
+.hs-cta-section {
+  position: relative;
+}
+
+/* ---- Shell con gradiente y glow ---- */
+.hs-cta__shell {
+  position: relative;
+  border-radius: var(--hs-radius-lg);
+  border: 1px solid rgba(74, 222, 128, 0.18);
+  background:
+    radial-gradient(at 20% 0%, rgba(74, 222, 128, 0.08) 0, transparent 50%),
+    radial-gradient(at 80% 100%, rgba(22, 101, 52, 0.18) 0, transparent 50%),
+    linear-gradient(180deg, rgba(13, 44, 24, 0.85) 0%, rgba(5, 46, 22, 0.95) 100%);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.40);
+  overflow: hidden;
+}
+
+.hs-cta__shell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg,
+              transparent 0%,
+              rgba(74, 222, 128, 0.5) 50%,
+              transparent 100%);
+}
+
+/* ============================================================
+ * CTAs
+ * ============================================================ */
+.hs-cta__actions .btn {
+  font-family: var(--hs-font-body);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.85rem 1.8rem;
+  border-radius: var(--hs-radius-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  min-width: 220px;
+}
+
+.hs-cta__primary {
+  color: var(--hs-blanco);
+  background: linear-gradient(135deg, var(--hs-verde-marca) 0%, var(--hs-verde-bosque) 100%);
+  border: none;
+  box-shadow: var(--hs-glow-marca);
+}
+
+.hs-cta__primary:hover,
+.hs-cta__primary:focus {
+  color: var(--hs-blanco);
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(74, 222, 128, 0.5);
+}
+
+.hs-cta__secondary {
+  color: var(--hs-blanco);
+  background: transparent;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+
+.hs-cta__secondary:hover,
+.hs-cta__secondary:focus {
+  color: var(--hs-blanco);
+  background-color: rgba(74, 222, 128, 0.10);
+  border-color: var(--hs-verde-acento);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+ * Commitments (los 4 compromisos)
+ * ============================================================ */
+.hs-cta__commitments {
+  border-top: 1px solid rgba(74, 222, 128, 0.10);
+  padding-top: 2rem;
+  margin-top: 0;
+}
+
+.hs-commitment {
+  border-radius: var(--hs-radius-md);
+  transition: background-color 0.2s ease;
+}
+
+.hs-commitment:hover {
+  background-color: rgba(74, 222, 128, 0.04);
+}
+
+.hs-commitment__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--hs-radius-md);
+  background: linear-gradient(135deg,
+              rgba(74, 222, 128, 0.18) 0%,
+              rgba(22, 163, 74, 0.10) 100%);
+  border: 1px solid rgba(74, 222, 128, 0.22);
+  color: var(--hs-verde-acento);
+}
+
+.hs-commitment__title {
+  font-family: var(--hs-font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--hs-blanco);
+  letter-spacing: 0.01em;
+}
+
+.hs-commitment__description {
+  font-family: var(--hs-font-body);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: rgba(226, 232, 240, 0.70);
+}
+
+/* ============================================================
+ * Mobile: ajustes finos
+ * ============================================================ */
+@media (max-width: 575.98px) {
+  .hs-cta__actions .btn {
+    width: 100%;
+    min-width: 0;
+  }
+}

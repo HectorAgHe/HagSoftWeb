@@ -1,0 +1,218 @@
+/* ============================================================
+ * TechSpheres — Three.js scene + overlays HTML
+ * El host del componente se posiciona absolute dentro del hero
+ * ============================================================ */
+:host {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hs-tech-spheres__host {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  cursor: grab;
+  /* En móvil: el browser maneja el scroll vertical de la página,
+     pero los gestos horizontales los capturamos para rotar el orbital. */
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hs-tech-spheres__host:active {
+  cursor: grabbing;
+}
+
+/* ============================================================
+ * Hover indicator — pill flotante con el nombre del tech
+ * ============================================================ */
+.hs-tech-spheres__hover {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  background: rgba(5, 46, 22, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--tech-color, var(--hs-cian));
+  color: #FFFFFF;
+  font-family: var(--hs-font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
+              0 0 32px var(--tech-color, var(--hs-cian-glow));
+  animation: hs-hover-in 0.25s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hs-tech-spheres__hover-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--tech-color, var(--hs-verde-acento));
+  box-shadow: 0 0 12px var(--tech-color, var(--hs-verde-acento));
+}
+
+@keyframes hs-hover-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ============================================================
+ * Hint inicial — pequeño badge animado abajo derecha
+ * ============================================================ */
+.hs-tech-spheres__hint {
+  position: absolute;
+  bottom: 6rem;
+  right: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(13, 44, 24, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(74, 222, 128, 0.20);
+  color: rgba(226, 232, 240, 0.7);
+  font-family: var(--hs-font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  pointer-events: none;
+  animation: hs-hint-pulse 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes hs-hint-pulse {
+  0%, 100% { opacity: 0.55; transform: translateY(0); }
+  50%      { opacity: 1;    transform: translateY(-4px); }
+}
+
+/* ============================================================
+ * Tooltip detallado — aparece al click
+ * ============================================================ */
+.hs-tech-spheres__tooltip {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 280px;
+  max-width: calc(100vw - 4rem);
+  padding: 1.1rem 1.3rem 1.1rem 1.3rem;
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg,
+      var(--tech-color, var(--hs-verde-marca)) 0%,
+      rgba(5, 46, 22, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  font-family: var(--hs-font-body);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.50),
+              0 0 48px var(--tech-color, rgba(74, 222, 128, 0.35));
+  animation: hs-tooltip-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+  z-index: 3;
+}
+
+@keyframes hs-tooltip-in {
+  from { opacity: 0; transform: translateY(-12px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hs-tech-spheres__tooltip-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.18s ease;
+}
+
+.hs-tech-spheres__tooltip-close:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.hs-tech-spheres__tooltip-category {
+  font-family: var(--hs-font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin: 0 0 0.4rem 0;
+}
+
+.hs-tech-spheres__tooltip-name {
+  font-family: var(--hs-font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.hs-tech-spheres__tooltip-desc {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  opacity: 0.92;
+  margin: 0;
+}
+
+/* ============================================================
+ * Mobile adjustments
+ * ============================================================ */
+@media (max-width: 575.98px) {
+  .hs-tech-spheres__hover {
+    top: 1rem;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
+    max-width: calc(100vw - 2rem);
+  }
+
+  /* Hint sube al header del hero, fuera del área de los CTAs */
+  .hs-tech-spheres__hint {
+    top: 1rem;
+    right: 1rem;
+    bottom: auto;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  /* Tooltip ocupa el ancho del viewport menos margen */
+  .hs-tech-spheres__tooltip {
+    top: auto;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    max-width: none;
+    padding: 0.9rem 2.6rem 0.9rem 1.1rem;
+  }
+}
+
+/* ============================================================
+ * Reduce motion — desactivar animaciones
+ * ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hs-tech-spheres__hover,
+  .hs-tech-spheres__hint,
+  .hs-tech-spheres__tooltip {
+    animation: none !important;
+  }
+}

@@ -1,3 +1,87 @@
-<section class="hs-problem-solution">
-  <h2>Problema y solución — pendiente</h2>
+<section class="hs-problem-solution py-5 py-lg-6">
+  <div class="container">
+
+    <!-- Encabezado -->
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <span class="hs-eyebrow">Por qué HagSoft</span>
+        <h2 class="hs-section-title mt-2 mb-3">
+          Si tu negocio vive en hojas de Excel,<br />
+          <span class="hs-text-acento">estás perdiendo dinero.</span>
+        </h2>
+        <p class="hs-section-lead">
+          La mayoría de comercios mexicanos cargan con la misma herida silenciosa.
+          Hagamos un diagnóstico rápido.
+        </p>
+      </div>
+    </div>
+
+    <!-- Comparativa -->
+    <div class="row g-4 align-items-stretch">
+
+      <!-- Columna PROBLEMA -->
+      <div class="col-12 col-lg-6">
+        <article class="hs-compare hs-compare--pain h-100 p-4 p-lg-5">
+          <header class="d-flex align-items-center gap-3 mb-4">
+            <div class="hs-compare__badge hs-compare__badge--pain" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </div>
+            <div>
+              <p class="hs-compare__kicker mb-1">Hoy estás aquí</p>
+              <h3 class="hs-compare__title m-0">Tu situación actual</h3>
+            </div>
+          </header>
+
+          <ul class="hs-compare__list list-unstyled m-0">
+            @for (pain of pains; track pain.text) {
+              <li class="hs-compare__item d-flex align-items-start gap-3">
+                <span class="hs-compare__icon hs-compare__icon--pain" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </span>
+                <span>{{ pain.text }}</span>
+              </li>
+            }
+          </ul>
+        </article>
+      </div>
+
+      <!-- Columna SOLUCIÓN -->
+      <div class="col-12 col-lg-6">
+        <article class="hs-compare hs-compare--win h-100 p-4 p-lg-5">
+          <header class="d-flex align-items-center gap-3 mb-4">
+            <div class="hs-compare__badge hs-compare__badge--win" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div>
+              <p class="hs-compare__kicker mb-1">Con HagSoft</p>
+              <h3 class="hs-compare__title m-0">Tu nueva realidad</h3>
+            </div>
+          </header>
+
+          <ul class="hs-compare__list list-unstyled m-0">
+            @for (benefit of benefits; track benefit.text) {
+              <li class="hs-compare__item d-flex align-items-start gap-3">
+                <span class="hs-compare__icon hs-compare__icon--win" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+                <span>{{ benefit.text }}</span>
+              </li>
+            }
+          </ul>
+        </article>
+      </div>
+
+    </div>
+
+  </div>
 </section>

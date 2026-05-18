@@ -1,14 +1,21 @@
 /* ============================================================
- * Navbar HagSoft — sticky-top con efecto glass
+ * Navbar HagSoft — sticky-top con hide-on-scroll
  * Casi todo el layout viene de Bootstrap; aquí solo color y marca.
  * ============================================================ */
 
 .hs-navbar {
-  background-color: rgba(5, 46, 22, 0.78);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid rgba(74, 222, 128, 0.12);
+  background-color: var(--hs-verde-noche);
+  border-bottom: 1px solid rgba(74, 222, 128, 0.10);
   padding-block: 0.85rem;
+  transition: transform 0.35s ease, opacity 0.3s ease;
+  will-change: transform;
+}
+
+/* Hide-on-scroll: > 10px hace que se deslice fuera de vista */
+.hs-navbar--hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ---- Brand ---- */
@@ -27,19 +34,12 @@
   color: var(--hs-verde-acento);
 }
 
-.hs-navbar__mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.1rem;
-  height: 2.1rem;
+.hs-navbar__icon {
+  width: 36px;
+  height: 36px;
   border-radius: 0.55rem;
-  background: linear-gradient(135deg, var(--hs-verde-marca) 0%, var(--hs-verde-bosque) 100%);
-  color: var(--hs-blanco);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
   box-shadow: var(--hs-glow-marca);
+  display: block;
 }
 
 .hs-navbar__name {
@@ -89,9 +89,10 @@
   box-shadow: 0 0 28px rgba(74, 222, 128, 0.45);
 }
 
-/* ---- Hamburger custom (sin necesidad del SVG default de Bootstrap) ---- */
+/* ============================================================
+ * Hamburger (solo se renderiza < lg, ver d-lg-none en navbar.html)
+ * ============================================================ */
 .hs-navbar__toggler {
-  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
@@ -125,7 +126,9 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ---- Mobile: el menú colapsado tiene su propio fondo ---- */
+/* ============================================================
+ * Mobile (< lg): el menú colapsado tiene su propio fondo
+ * ============================================================ */
 @media (max-width: 991.98px) {
   .navbar-collapse {
     margin-top: 0.85rem;

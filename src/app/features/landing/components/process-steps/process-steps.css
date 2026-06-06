@@ -78,6 +78,40 @@
 }
 
 /* ============================================================
+ * Mobile (<768px): step cards compactos para 2-up
+ * ============================================================ */
+@media (max-width: 767.98px) {
+  .hs-step__number {
+    font-size: 1.4rem;
+  }
+
+  .hs-step__highlight {
+    font-size: 0.55rem;
+    letter-spacing: 0.10em;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .hs-step__title {
+    font-size: 0.95rem;
+    line-height: 1.25;
+  }
+
+  .hs-step__description {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 399.98px) {
+  .hs-step__title {
+    font-size: 0.85rem;
+  }
+  .hs-step__description {
+    font-size: 0.72rem;
+  }
+}
+
+/* ============================================================
  * Payment block
  * ============================================================ */
 .hs-payment {

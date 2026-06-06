@@ -143,3 +143,80 @@
   transform: translateY(-1px);
   box-shadow: 0 0 24px rgba(74, 222, 128, 0.35);
 }
+
+/* ============================================================
+ * Mobile (<768px): card compacta para que 2 quepan por fila
+ * ============================================================ */
+@media (max-width: 767.98px) {
+  .hs-service-card {
+    padding: 0.85rem !important;
+    border-radius: var(--hs-radius-md);
+  }
+
+  .hs-service-card__icon {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .hs-service-card__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hs-service-card__badge {
+    font-size: 0.55rem;
+    padding: 0.2rem 0.45rem;
+    letter-spacing: 0.10em;
+  }
+
+  .hs-service-card__title {
+    font-size: 0.95rem;
+    line-height: 1.25;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .hs-service-card__summary {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    margin-bottom: 0.6rem !important;
+  }
+
+  /* Lista de features oculta en mobile — el summary ya cuenta la historia
+     y los 4 bullets ocupan demasiado espacio vertical en cards estrechas. */
+  .hs-service-card__features {
+    display: none;
+  }
+
+  .hs-service-card__price-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.10em;
+  }
+
+  .hs-service-card__price {
+    font-size: 1rem;
+  }
+
+  .hs-service-card__cta {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .hs-service-card__cta svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Tweak extra para teléfonos pequeños (<400px) */
+@media (max-width: 399.98px) {
+  .hs-service-card {
+    padding: 0.7rem !important;
+  }
+  .hs-service-card__title {
+    font-size: 0.85rem;
+  }
+  .hs-service-card__cta {
+    font-size: 0.72rem;
+  }
+}

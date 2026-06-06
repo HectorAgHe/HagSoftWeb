@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { ContactForm } from './components/contact-form/contact-form';
-import { QuoteForm } from './components/quote-form/quote-form';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ContactForm, QuoteForm],
+  imports: [ContactForm],
   templateUrl: './contact.html',
   styleUrl: './contact.css'
 })

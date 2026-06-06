@@ -16,12 +16,12 @@
       </div>
     </div>
 
-    <!-- Timeline de pasos -->
-    <div class="row g-4 align-items-stretch hs-process-steps__grid">
+    <!-- Timeline de pasos — 2 cards en mobile/tablet, 4 en desktop -->
+    <div class="row g-3 g-md-4 align-items-stretch hs-process-steps__grid">
       @for (step of steps; track step.number; let last = $last) {
-        <div class="col-12 col-md-6 col-xl-3">
-          <article class="hs-step h-100 d-flex flex-column p-4">
-            <div class="d-flex align-items-baseline gap-3 mb-3">
+        <div class="col-6 col-md-6 col-xl-3">
+          <article class="hs-step h-100 d-flex flex-column p-3 p-md-4">
+            <div class="d-flex align-items-baseline gap-2 gap-md-3 mb-2 mb-md-3 flex-wrap">
               <span class="hs-step__number">{{ step.number }}</span>
               <span class="hs-step__highlight">{{ step.highlight }}</span>
             </div>

@@ -1,3 +1,235 @@
-<form class="hs-contact-form">
-  <h3>Escríbenos por WhatsApp — pendiente</h3>
+<form class="hs-cform" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+  <div class="row g-3 g-md-4">
+
+    <!-- Nombre -->
+    <div class="col-12 col-md-6">
+      <label class="hs-cform__label" for="cf-nombre">
+        Nombre completo <span class="hs-cform__req">*</span>
+      </label>
+      <input id="cf-nombre"
+             type="text"
+             class="form-control hs-cform__input"
+             [class.is-invalid]="showError('nombre')"
+             formControlName="nombre"
+             placeholder="Tu nombre"
+             autocomplete="name" />
+      @if (showError('nombre')) {
+        <small class="hs-cform__error">Mínimo 2 caracteres.</small>
+      }
+    </div>
+
+    <!-- Email -->
+    <div class="col-12 col-md-6">
+      <label class="hs-cform__label" for="cf-email">
+        Email <span class="hs-cform__req">*</span>
+      </label>
+      <input id="cf-email"
+             type="email"
+             class="form-control hs-cform__input"
+             [class.is-invalid]="showError('email')"
+             formControlName="email"
+             placeholder="tu@correo.com"
+             autocomplete="email"
+             inputmode="email" />
+      @if (showError('email')) {
+        <small class="hs-cform__error">Email inválido.</small>
+      }
+    </div>
+
+    <!-- Teléfono -->
+    <div class="col-12 col-md-6">
+      <label class="hs-cform__label" for="cf-telefono">Teléfono / WhatsApp</label>
+      <input id="cf-telefono"
+             type="tel"
+             class="form-control hs-cform__input"
+             formControlName="telefono"
+             placeholder="55 1234 5678"
+             autocomplete="tel"
+             inputmode="tel" />
+    </div>
+
+    <!-- Empresa -->
+    <div class="col-12 col-md-6">
+      <label class="hs-cform__label" for="cf-empresa">Empresa o negocio</label>
+      <input id="cf-empresa"
+             type="text"
+             class="form-control hs-cform__input"
+             formControlName="empresa"
+             placeholder="Nombre de tu tienda"
+             autocomplete="organization" />
+    </div>
+
+    <!-- Servicio -->
+    <div class="col-12 col-md-6">
+      <label class="hs-cform__label" for="cf-servicio">Servicio de interés</label>
+      <select id="cf-servicio"
+              class="form-select hs-cform__input"
+              formControlName="servicio">
+        <option value="">— Selecciona un servicio —</option>
+        @for (svc of servicesList(); track svc.id) {
+          <option [value]="svc.title">{{ svc.title }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Presupuesto -->
+    <div class="col-12 col-md-6">
+      <label class="hs-cform__label" for="cf-presupuesto">Presupuesto aproximado</label>
+      <select id="cf-presupuesto"
+              class="form-select hs-cform__input"
+              formControlName="presupuesto">
+        <option value="">— Sin definir —</option>
+        @for (rango of presupuestos; track rango) {
+          <option [value]="rango">{{ rango }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Asunto -->
+    <div class="col-12">
+      <label class="hs-cform__label" for="cf-asunto">
+        Asunto <span class="hs-cform__req">*</span>
+      </label>
+      <input id="cf-asunto"
+             type="text"
+             class="form-control hs-cform__input"
+             [class.is-invalid]="showError('asunto')"
+             formControlName="asunto"
+             placeholder="¿De qué quieres hablar?" />
+      @if (showError('asunto')) {
+        <small class="hs-cform__error">Asunto requerido (mín. 3 caracteres).</small>
+      }
+
+      <!-- Sugerencias rápidas de asunto -->
+      <div class="hs-cform__suggestions d-flex flex-wrap gap-2 mt-2">
+        <button type="button"
+                class="hs-cform__suggestion"
+                (click)="setAsunto('Cotización de un sistema')">
+          Cotización
+        </button>
+        <button type="button"
+                class="hs-cform__suggestion"
+                (click)="setAsunto('Demo o reunión inicial')">
+          Demo
+        </button>
+        <button type="button"
+                class="hs-cform__suggestion"
+                (click)="setAsunto('Asesoría / diagnóstico')">
+          Asesoría
+        </button>
+        <button type="button"
+                class="hs-cform__suggestion"
+                (click)="setAsunto('Soporte de un sistema existente')">
+          Soporte
+        </button>
+      </div>
+    </div>
+
+    <!-- Mensaje -->
+    <div class="col-12">
+      <label class="hs-cform__label" for="cf-mensaje">
+        Mensaje <span class="hs-cform__req">*</span>
+      </label>
+      <textarea id="cf-mensaje"
+                class="form-control hs-cform__input hs-cform__textarea"
+                [class.is-invalid]="showError('mensaje')"
+                formControlName="mensaje"
+                rows="6"
+                placeholder="Cuéntanos qué necesitas: el problema que tienes, qué has probado, en cuánto tiempo lo necesitas..."></textarea>
+      @if (showError('mensaje')) {
+        <small class="hs-cform__error">Cuéntanos un poco más (mín. 10 caracteres).</small>
+      }
+    </div>
+
+  </div>
+
+  <!-- Footer del form -->
+  <div class="d-flex flex-column flex-md-row gap-3 align-items-md-center justify-content-md-between mt-4 pt-3 hs-cform__footer">
+    <p class="hs-cform__note m-0">
+      Se abrirá <strong>{{ destinationEmail }}</strong> en tu cliente de correo.
+      No mandamos nada automáticamente.
+    </p>
+    <div class="d-flex gap-2 align-items-center">
+      @if (hasOpenedMailto()) {
+        <button type="button"
+                class="btn hs-cform__btn-secondary"
+                (click)="resetForm()">
+          Nuevo mensaje
+        </button>
+      }
+
+      <!-- Split button: Enviar (mailto) + chevron con opciones extra -->
+      <div class="hs-cform__send-group">
+        <button type="submit"
+                class="btn hs-cform__btn-primary hs-cform__btn-primary--split"
+                [disabled]="form.invalid">
+          Enviar
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ms-2">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+        <button type="button"
+                class="btn hs-cform__btn-primary hs-cform__btn-toggle"
+                [disabled]="form.invalid"
+                (click)="toggleMenu()"
+                [attr.aria-expanded]="menuOpen()"
+                aria-haspopup="menu"
+                aria-label="Otras formas de enviar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+               [class.is-flipped]="menuOpen()">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+
+        @if (menuOpen()) {
+          <ul class="hs-cform__menu" role="menu">
+            <li role="presentation">
+              <button type="button" class="hs-cform__menu-item" role="menuitem" (click)="onSubmit(); closeMenu()">
+                <span class="hs-cform__menu-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </span>
+                <span>
+                  <span class="hs-cform__menu-title">Mi cliente predeterminado</span>
+                  <span class="hs-cform__menu-hint">Outlook, Mail, Thunderbird…</span>
+                </span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="hs-cform__menu-item" role="menuitem" (click)="sendViaGmail()">
+                <span class="hs-cform__menu-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+                  </svg>
+                </span>
+                <span>
+                  <span class="hs-cform__menu-title">Abrir en Gmail</span>
+                  <span class="hs-cform__menu-hint">Pestaña nueva, Gmail web</span>
+                </span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="hs-cform__menu-item" role="menuitem" (click)="sendViaClipboard()">
+                <span class="hs-cform__menu-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                </span>
+                <span>
+                  <span class="hs-cform__menu-title">Copiar al portapapeles</span>
+                  <span class="hs-cform__menu-hint">Pega donde quieras</span>
+                </span>
+              </button>
+            </li>
+          </ul>
+        }
+      </div>
+    </div>
+  </div>
+
 </form>

@@ -40,11 +40,11 @@
         </a>
       </div>
 
-      <!-- Compromisos -->
-      <div class="row g-4 hs-cta__commitments">
+      <!-- Compromisos — 2 cards en mobile, 4 en desktop -->
+      <div class="row g-3 g-md-4 hs-cta__commitments">
         @for (item of commitments; track item.title) {
-          <div class="col-12 col-sm-6 col-lg-3">
-            <div class="hs-commitment text-center text-sm-start p-3 h-100">
+          <div class="col-6 col-lg-3">
+            <div class="hs-commitment text-center text-sm-start p-2 p-md-3 h-100">
               <div class="hs-commitment__icon mb-3" aria-hidden="true">
                 @switch (item.icon) {
                   @case ('code') {

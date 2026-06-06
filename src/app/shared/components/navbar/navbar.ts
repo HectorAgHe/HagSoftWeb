@@ -1,5 +1,6 @@
 import { Component, signal, afterNextRender, inject, DestroyRef } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ToastService } from '../../../core/services/toast.service';
 
 /**
  * Navbar global — sticky-top con efecto hide-on-scroll.
@@ -20,19 +21,30 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class Navbar {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly toast = inject(ToastService);
 
   readonly isMenuOpen = signal(false);
   readonly isScrolled = signal(false);
 
   constructor() {
     afterNextRender(() => {
+      const root = document.documentElement;
       const onScroll = (): void => {
-        this.isScrolled.set(window.scrollY > 10);
+        const scrolled = window.scrollY > 10;
+        this.isScrolled.set(scrolled);
+        // Doble enlace para que componentes externos (ej. tabs sticky de
+        // /servicios) reaccionen sin tener referencia al navbar:
+        //   1) Clase booleana (selectores CSS clásicos)
+        //   2) CSS variable con la altura efectiva del navbar (0 si oculto)
+        root.classList.toggle('hs-navbar-is-hidden', scrolled);
+        root.style.setProperty('--hs-navbar-h', scrolled ? '0px' : '70px');
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
       this.destroyRef.onDestroy(() => {
         window.removeEventListener('scroll', onScroll);
+        root.classList.remove('hs-navbar-is-hidden');
+        root.style.removeProperty('--hs-navbar-h');
       });
     });
   }
@@ -43,5 +55,12 @@ export class Navbar {
 
   closeMenu(): void {
     this.isMenuOpen.set(false);
+  }
+
+  /** Click sobre "Blog" — muestra toast y cierra el menú móvil. */
+  showBlogComingSoon(event: Event): void {
+    event.preventDefault();
+    this.toast.info('El blog estará disponible próximamente.');
+    this.closeMenu();
   }
 }

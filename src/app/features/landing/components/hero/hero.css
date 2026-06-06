@@ -7,7 +7,10 @@
 
 .hs-hero {
   position: relative;
-  height: 300vh;
+  /* 400vh desktop: 100vh sticky + 300vh scrollable distribuidos en 3 stages
+     → ~150vh de scroll por transición, suficiente para que un scroll rápido
+     no salte de stage 0 a stage 2 sin pasar visualmente por stage 1. */
+  height: 400vh;
 }
 
 .hs-hero__sticky {
@@ -345,7 +348,9 @@
   z-index: 1;
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  /* Transición más suave (0.55s → 0.85s) para que el fade entre stages
+     no se sienta brusco cuando alguien scrollea rápido. */
+  transition: opacity 0.85s ease, transform 0.85s ease;
   pointer-events: none;            /* SIEMPRE none — los hijos opt-in */
   will-change: opacity, transform;
 }
@@ -637,7 +642,10 @@
 
 @media (max-width: 991.98px) {
   .hs-hero {
-    height: 250vh;
+    /* Mobile: 350vh → 250vh scrollable / 2 transiciones = 125vh c/u.
+       Más generoso que antes (era 75vh c/u). Combina bien con dedos
+       que tienden a hacer flicks largos en pantalla pequeña. */
+    height: 350vh;
   }
   .hs-hero__illustration {
     max-width: 320px;

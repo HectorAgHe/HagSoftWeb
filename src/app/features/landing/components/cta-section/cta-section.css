@@ -134,3 +134,27 @@
     min-width: 0;
   }
 }
+
+/* Commitments compactos cuando 2-up en mobile */
+@media (max-width: 767.98px) {
+  .hs-commitment__icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-bottom: 0.6rem !important;
+  }
+
+  .hs-commitment__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hs-commitment__title {
+    font-size: 0.85rem;
+    line-height: 1.25;
+  }
+
+  .hs-commitment__description {
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+}

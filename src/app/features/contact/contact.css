@@ -1,1 +1,83 @@
-/* Estilos contact — pendiente */
+/* ============================================================
+ * Contact Page
+ * ============================================================ */
+.hs-contact-page {
+  position: relative;
+}
+
+/* Header con fondo animado (mismo patrón que services-page) */
+.hs-contact-page__header {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(74, 222, 128, 0.10);
+}
+
+.hs-contact-page__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hs-contact-page__orb {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  border-radius: 50%;
+  filter: blur(80px);
+  mix-blend-mode: screen;
+  opacity: 0.40;
+  will-change: transform;
+}
+
+.hs-contact-page__orb--1 {
+  background: var(--hs-verde-marca);
+  top: -20%;
+  left: -10%;
+  animation: hs-cp-orb-1 22s ease-in-out infinite;
+}
+
+.hs-contact-page__orb--2 {
+  background: var(--hs-cian);
+  bottom: -25%;
+  right: -10%;
+  animation: hs-cp-orb-2 26s ease-in-out infinite;
+}
+
+@keyframes hs-cp-orb-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(15vw, 10vh, 0) scale(1.1); }
+}
+@keyframes hs-cp-orb-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(-12vw, -15vh, 0) scale(1.2); }
+}
+
+.hs-contact-page__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(74, 222, 128, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 75%);
+}
+
+.hs-contact-page__title {
+  font-family: var(--hs-font-display);
+  font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--hs-blanco);
+  text-shadow: 0 0 40px rgba(74, 222, 128, 0.30);
+}
+
+.hs-contact-page__lead {
+  font-family: var(--hs-font-body);
+  font-size: clamp(1rem, 0.8vw + 0.7rem, 1.15rem);
+  line-height: 1.55;
+  color: rgba(226, 232, 240, 0.78);
+  max-width: 60ch;
+}

@@ -10,34 +10,39 @@
           <span class="hs-text-acento">para comercios mexicanos</span>
         </h2>
         <p class="hs-section-lead">
-          Cuatro caminos para llevar tu negocio del Excel al control real.
-          Precio fijo, código tuyo, soporte directo.
+          Cuatro caminos para llevar tu negocio del Excel al control y presencia real.
+          Precio fijo, soporte directo.
         </p>
       </div>
     </div>
 
-    <!-- Grid de servicios -->
-    <div class="row g-4 align-items-stretch">
+    <!-- Grid de servicios — 2 cards en mobile, 2 en tablet, 4 en desktop -->
+    <div class="row g-3 g-md-4 align-items-stretch">
       @for (svc of services(); track svc.id) {
-        <div class="col-12 col-md-6 col-xl-3">
+        <div class="col-6 col-md-6 col-xl-3">
           <app-service-card [service]="svc" />
         </div>
       }
     </div>
 
-    <!-- Footer de sección -->
+    <!-- Footer de sección: Ver todos + Cuéntanos -->
     <div class="row justify-content-center mt-5">
       <div class="col-lg-8 text-center">
         <p class="hs-services-section__note mb-3">
-          ¿No estás seguro cuál encaja con tu negocio?
+          ¿Quieres ver el catálogo completo con todos los detalles?
         </p>
-        <a class="btn hs-services-section__cta" routerLink="/contacto">
-          Cuéntanos qué necesitas
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ms-2">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center align-items-center">
+          <a class="btn hs-services-section__primary" routerLink="/servicios">
+            Ver todos los servicios
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ms-2">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a class="btn hs-services-section__cta" routerLink="/contacto">
+            Cuéntanos qué necesitas
+          </a>
+        </div>
       </div>
     </div>
 

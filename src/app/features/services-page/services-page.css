@@ -1,1 +1,550 @@
-/* Estilos services-page — pendiente */
+/* ============================================================
+ * Services Page — listado completo de servicios
+ * ============================================================ */
+
+.hs-services-page {
+  position: relative;
+}
+
+/* ============================================================
+ * Header con fondo animado
+ * ============================================================ */
+.hs-services-page__header {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(74, 222, 128, 0.10);
+}
+
+.hs-services-page__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hs-services-page__orb {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  border-radius: 50%;
+  filter: blur(80px);
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  will-change: transform;
+}
+
+.hs-services-page__orb--1 {
+  background: var(--hs-verde-marca);
+  top: -20%;
+  left: -10%;
+  animation: hs-sp-orb-1 20s ease-in-out infinite;
+}
+
+.hs-services-page__orb--2 {
+  background: var(--hs-cian);
+  bottom: -25%;
+  right: -10%;
+  animation: hs-sp-orb-2 24s ease-in-out infinite;
+}
+
+@keyframes hs-sp-orb-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(15vw, 10vh, 0) scale(1.1); }
+}
+
+@keyframes hs-sp-orb-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(-12vw, -15vh, 0) scale(1.2); }
+}
+
+.hs-services-page__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(74, 222, 128, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 75%);
+}
+
+/* ---- Header title + lead ---- */
+.hs-services-page__title {
+  font-family: var(--hs-font-display);
+  font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--hs-blanco);
+  text-shadow: 0 0 40px rgba(74, 222, 128, 0.30);
+}
+
+.hs-services-page__lead {
+  font-family: var(--hs-font-body);
+  font-size: clamp(1rem, 0.8vw + 0.7rem, 1.2rem);
+  line-height: 1.55;
+  color: rgba(226, 232, 240, 0.75);
+  max-width: 60ch;
+}
+
+/* ============================================================
+ * Tabs de categorías — pills scrollables horizontalmente
+ * ============================================================ */
+.hs-services-tabs {
+  position: sticky;
+  /* La altura efectiva del navbar la inyecta navbar.ts en --hs-navbar-h.
+     0px cuando se oculta, 70px cuando visible. Si la var no existe
+     (ej. página estática previa al boot del navbar), default 70px. */
+  top: var(--hs-navbar-h, 70px);
+  z-index: 5;
+  background-color: rgba(5, 46, 22, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(74, 222, 128, 0.10);
+  padding-block: 0.85rem;
+  transition: top 0.35s ease;
+}
+
+.hs-services-tabs__scroller {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  /* Pequeño fade en los bordes para indicar más contenido */
+  mask-image: linear-gradient(90deg,
+              transparent 0,
+              black 20px,
+              black calc(100% - 20px),
+              transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg,
+              transparent 0,
+              black 20px,
+              black calc(100% - 20px),
+              transparent 100%);
+  padding-inline: 4px;
+}
+
+.hs-services-tabs__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.hs-services-tabs__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(74, 222, 128, 0.20);
+  background-color: rgba(15, 23, 42, 0.45);
+  color: rgba(226, 232, 240, 0.78);
+  font-family: var(--hs-font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: var(--hs-radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
+  scroll-snap-align: start;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  flex-shrink: 0;
+}
+
+.hs-services-tabs__btn:hover {
+  color: var(--hs-blanco);
+  border-color: rgba(74, 222, 128, 0.40);
+  background-color: rgba(74, 222, 128, 0.06);
+}
+
+.hs-services-tabs__btn.is-active {
+  color: #052E16;
+  background: linear-gradient(135deg, var(--hs-verde-acento) 0%, var(--hs-cian-bright) 100%);
+  border-color: transparent;
+  box-shadow: 0 0 24px rgba(74, 222, 128, 0.40),
+              0 0 12px rgba(34, 211, 238, 0.30);
+  font-weight: 700;
+}
+
+.hs-services-tabs__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.4rem;
+  font-family: var(--hs-font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  background-color: rgba(74, 222, 128, 0.18);
+  color: var(--hs-verde-acento);
+}
+
+.hs-services-tabs__btn.is-active .hs-services-tabs__count {
+  background-color: rgba(5, 46, 22, 0.25);
+  color: var(--hs-verde-noche);
+}
+
+/* ============================================================
+ * Empty state cuando la categoría no tiene servicios
+ * ============================================================ */
+.hs-services-page__empty {
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: var(--hs-radius-lg);
+  border: 1px dashed rgba(74, 222, 128, 0.22);
+  background-color: rgba(13, 44, 24, 0.35);
+  padding: 3rem 1.5rem;
+}
+
+.hs-services-page__empty-title {
+  font-family: var(--hs-font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hs-cian-bright);
+}
+
+.hs-services-page__empty-text {
+  font-family: var(--hs-font-body);
+  color: rgba(226, 232, 240, 0.65);
+  font-size: 0.95rem;
+}
+
+/* ============================================================
+ * Service block — bloque por servicio (alternados)
+ * ============================================================ */
+.hs-service-block {
+  border-bottom: 1px solid rgba(74, 222, 128, 0.06);
+}
+
+.hs-service-block:last-child {
+  border-bottom: none;
+}
+
+/* Alternar orden: bloque par = media derecha, impar = media izquierda */
+.hs-service-block--reverse .row {
+  flex-direction: row-reverse;
+}
+
+/* ---- Media (mockup) ---- */
+.hs-service-block__media-col {
+  display: flex;
+  justify-content: center;
+}
+
+.hs-service-block__media {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  padding: 1rem;
+  border-radius: var(--hs-radius-lg);
+  background: linear-gradient(180deg,
+              rgba(13, 44, 24, 0.55) 0%,
+              rgba(5, 46, 22, 0.30) 100%);
+  border: 1px solid rgba(74, 222, 128, 0.12);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35),
+              0 0 64px rgba(74, 222, 128, 0.10);
+}
+
+.hs-service-block__media::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--hs-radius-lg);
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.20), transparent 50%, rgba(34, 211, 238, 0.15));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1px;
+  pointer-events: none;
+}
+
+.hs-mockup {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--hs-radius-md);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35));
+}
+
+/* ---- Content ---- */
+.hs-service-block__badge {
+  font-family: var(--hs-font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hs-verde-noche);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--hs-radius-pill);
+  background: linear-gradient(135deg, var(--hs-verde-acento), var(--hs-cian-bright));
+  box-shadow: 0 0 16px rgba(74, 222, 128, 0.30);
+}
+
+/* Badge "Próximamente" — outline en lugar de fill, color cian */
+.hs-service-block__badge--soon {
+  color: var(--hs-cian-bright);
+  background: transparent;
+  border: 1px solid var(--hs-cian);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.25);
+}
+
+.hs-service-block__title {
+  font-family: var(--hs-font-display);
+  font-size: clamp(1.6rem, 2.5vw + 0.5rem, 2.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--hs-blanco);
+  letter-spacing: -0.01em;
+}
+
+.hs-service-block__summary {
+  font-family: var(--hs-font-body);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--hs-verde-acento);
+}
+
+.hs-service-block__description {
+  font-family: var(--hs-font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(226, 232, 240, 0.78);
+}
+
+/* ---- Features ---- */
+.hs-service-block__features {
+  font-family: var(--hs-font-body);
+  font-size: 0.95rem;
+  color: rgba(226, 232, 240, 0.85);
+  margin: 0;
+}
+
+.hs-service-block__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background-color: rgba(74, 222, 128, 0.15);
+  color: var(--hs-verde-acento);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* ---- Price ---- */
+.hs-service-block__price-label {
+  font-family: var(--hs-font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.55);
+}
+
+.hs-service-block__price {
+  font-family: var(--hs-font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--hs-blanco);
+  letter-spacing: -0.01em;
+}
+
+/* ---- CTA ---- */
+.hs-service-block__cta {
+  font-family: var(--hs-font-body);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.7rem 1.5rem;
+  color: var(--hs-blanco);
+  background: linear-gradient(135deg, var(--hs-verde-marca) 0%, var(--hs-verde-bosque) 100%);
+  border: none;
+  border-radius: var(--hs-radius-pill);
+  box-shadow: var(--hs-glow-marca);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.hs-service-block__cta:hover,
+.hs-service-block__cta:focus {
+  color: var(--hs-blanco);
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(74, 222, 128, 0.45);
+}
+
+/* ============================================================
+ * Galería del servicio — carrusel de imágenes + videos
+ * ============================================================ */
+.hs-service-gallery {
+  border-top: 1px solid rgba(74, 222, 128, 0.08);
+  padding-top: 2rem;
+}
+
+.hs-service-gallery__heading {
+  font-family: var(--hs-font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--hs-verde-acento);
+}
+
+.hs-service-gallery__hint {
+  font-family: var(--hs-font-body);
+  font-size: 0.78rem;
+  color: rgba(226, 232, 240, 0.50);
+  letter-spacing: 0.05em;
+}
+
+/* ---- Carrusel (CSS scroll-snap, 0 JS) ---- */
+.hs-service-gallery__carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 1rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(74, 222, 128, 0.30) transparent;
+  padding-bottom: 1rem;
+  /* Pequeño fade en bordes para indicar "hay más" */
+  mask-image: linear-gradient(90deg,
+              transparent 0,
+              black 16px,
+              black calc(100% - 16px),
+              transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg,
+              transparent 0,
+              black 16px,
+              black calc(100% - 16px),
+              transparent 100%);
+}
+
+.hs-service-gallery__carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.hs-service-gallery__carousel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hs-service-gallery__carousel::-webkit-scrollbar-thumb {
+  background: rgba(74, 222, 128, 0.25);
+  border-radius: 999px;
+}
+
+.hs-service-gallery__slide {
+  flex: 0 0 auto;
+  margin: 0;
+  scroll-snap-align: start;
+  width: min(540px, 86vw);
+  border-radius: var(--hs-radius-md);
+  overflow: hidden;
+  background-color: rgba(13, 44, 24, 0.55);
+  border: 1px solid rgba(74, 222, 128, 0.12);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hs-service-gallery__slide:hover {
+  transform: translateY(-2px);
+  border-color: rgba(74, 222, 128, 0.32);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45),
+              0 0 24px rgba(74, 222, 128, 0.15);
+}
+
+.hs-service-gallery__img {
+  display: block;
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  background-color: #0F172A;
+}
+
+.hs-service-gallery__caption {
+  font-family: var(--hs-font-body);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(226, 232, 240, 0.78);
+  padding: 0.75rem 1rem;
+  background-color: rgba(5, 46, 22, 0.4);
+  border-top: 1px solid rgba(74, 222, 128, 0.08);
+}
+
+/* ---- Grid de videos ---- */
+.hs-service-gallery__videos {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+}
+
+.hs-service-gallery__video-wrap {
+  margin: 0;
+  border-radius: var(--hs-radius-md);
+  overflow: hidden;
+  background-color: rgba(13, 44, 24, 0.55);
+  border: 1px solid rgba(74, 222, 128, 0.12);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.hs-service-gallery__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  object-fit: cover;
+}
+
+/* Responsive carousel — imágenes más bajas en mobile */
+@media (max-width: 767.98px) {
+  .hs-service-gallery__img {
+    height: 220px;
+  }
+  .hs-service-gallery__slide {
+    width: min(360px, 88vw);
+  }
+}
+
+/* ============================================================
+ * Mobile tweaks
+ * ============================================================ */
+@media (max-width: 991.98px) {
+  /* En mobile, todos los bloques tienen mockup arriba — sin reverse */
+  .hs-service-block--reverse .row {
+    flex-direction: row;
+  }
+
+  .hs-service-block__summary {
+    font-size: 1rem;
+  }
+
+  .hs-service-block__price {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hs-service-block__media {
+    padding: 0.5rem;
+  }
+
+  .hs-service-block__cta {
+    width: 100%;
+  }
+}

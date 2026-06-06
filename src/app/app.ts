@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { Landing } from './features/landing/landing';
+import { RouterOutlet } from '@angular/router';
 import { Navbar } from './shared/components/navbar/navbar';
 import { Footer } from './shared/components/footer/footer';
-import { WhatsappBtn } from './shared/components/whatsapp-btn/whatsapp-btn';
+import { Toast } from './shared/components/toast/toast';
 
 @Component({
   selector: 'app-root',
-  imports: [Landing, Navbar, Footer, WhatsappBtn],
+  imports: [RouterOutlet, Navbar, Footer, Toast],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

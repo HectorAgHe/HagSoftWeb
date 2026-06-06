@@ -12,18 +12,39 @@
   font-size: 1rem;
 }
 
+.hs-services-section__primary,
 .hs-services-section__cta {
   font-family: var(--hs-font-body);
   font-weight: 600;
   letter-spacing: 0.02em;
   padding: 0.7rem 1.6rem;
-  color: var(--hs-blanco);
-  background: transparent;
-  border: 1px solid rgba(74, 222, 128, 0.35);
   border-radius: var(--hs-radius-pill);
   display: inline-flex;
   align-items: center;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Botón principal: lleva al catálogo completo */
+.hs-services-section__primary {
+  color: var(--hs-blanco);
+  background: linear-gradient(135deg, var(--hs-verde-marca) 0%, var(--hs-verde-bosque) 100%);
+  border: none;
+  box-shadow: var(--hs-glow-marca);
+}
+
+.hs-services-section__primary:hover,
+.hs-services-section__primary:focus {
+  color: var(--hs-blanco);
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(74, 222, 128, 0.45);
+}
+
+/* Botón secundario: contacto */
+.hs-services-section__cta {
+  color: var(--hs-blanco);
+  background: transparent;
+  border: 1px solid rgba(74, 222, 128, 0.35);
 }
 
 .hs-services-section__cta:hover,

@@ -1,8 +1,217 @@
 @if (service(); as svc) {
-  <article class="hs-service-detail">
-    <h2>{{ svc.title }}</h2>
-    <p>{{ svc.description }}</p>
-  </article>
+
+  <section class="hs-service-detail">
+
+    <!-- ============================================================
+         Hero: breadcrumb + categoría + título + summary + precio
+         ============================================================ -->
+    <header class="hs-service-detail__hero py-5 py-lg-6">
+      <div class="hs-service-detail__bg" aria-hidden="true">
+        <span class="hs-service-detail__orb hs-service-detail__orb--1"></span>
+        <span class="hs-service-detail__orb hs-service-detail__orb--2"></span>
+        <span class="hs-service-detail__grid"></span>
+      </div>
+
+      <div class="container position-relative">
+        <!-- Breadcrumb -->
+        <nav class="hs-service-detail__crumbs mb-3" aria-label="Breadcrumb">
+          <a routerLink="/" class="hs-service-detail__crumb">Inicio</a>
+          <span aria-hidden="true">›</span>
+          <a routerLink="/servicios" class="hs-service-detail__crumb">Servicios</a>
+          <span aria-hidden="true">›</span>
+          <span class="hs-service-detail__crumb-current">{{ svc.title }}</span>
+        </nav>
+
+        <div class="row align-items-center g-4 g-lg-5">
+          <div class="col-12 col-lg-7">
+            <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
+              <span class="hs-eyebrow">{{ categoryLabel() }}</span>
+              @if (svc.isAnchor) {
+                <span class="hs-service-detail__badge">Servicio ancla</span>
+              }
+              @if (svc.status === 'coming-soon') {
+                <span class="hs-service-detail__badge hs-service-detail__badge--soon">Próximamente</span>
+              }
+            </div>
+
+            <h1 class="hs-service-detail__title mb-3">{{ svc.title }}</h1>
+            <p class="hs-service-detail__summary mb-4">{{ svc.summary }}</p>
+
+            <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-3 gap-sm-4">
+              <div>
+                <p class="hs-service-detail__price-label m-0">{{ svc.price.suffix || 'Inversión' }}</p>
+                <p class="hs-service-detail__price m-0">{{ svc.price.amount | currencyMx }}</p>
+              </div>
+              <a class="btn hs-service-detail__cta"
+                 [routerLink]="['/contacto']"
+                 [queryParams]="{ servicio: svc.slug }">
+                Solicitar cotización
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ms-2">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================================================
+         Descripción + Features
+         ============================================================ -->
+    <section class="hs-service-detail__body py-5">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-lg-7">
+            <h2 class="hs-service-detail__section-title mb-3">Qué incluye</h2>
+            <p class="hs-service-detail__description mb-4">{{ svc.description }}</p>
+
+            <ul class="hs-service-detail__features list-unstyled">
+              @for (feature of svc.features; track feature) {
+                <li class="d-flex align-items-start gap-3 mb-3">
+                  <span class="hs-service-detail__check" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  <span>{{ feature }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Aside: contacto rápido + back link -->
+          <div class="col-12 col-lg-5">
+            <aside class="hs-service-detail__aside p-4 p-lg-4">
+              <p class="hs-service-detail__aside-kicker m-0 mb-2">¿Te interesa?</p>
+              <h3 class="hs-service-detail__aside-title mb-3">Hablemos en concreto</h3>
+              <p class="hs-service-detail__aside-text mb-4">
+                Agendamos 30 minutos sin costo para entender tu caso y darte
+                una propuesta a la medida con precio fijo.
+              </p>
+              <a class="btn hs-service-detail__cta w-100 mb-2"
+                 [routerLink]="['/contacto']"
+                 [queryParams]="{ servicio: svc.slug }">
+                Solicitar cotización
+              </a>
+              <a class="hs-service-detail__back-link d-block text-center"
+                 routerLink="/servicios">
+                ← Ver todos los servicios
+              </a>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         Galería (si existe)
+         ============================================================ -->
+    @if (svc.gallery; as gallery) {
+      <section class="hs-service-detail__gallery-section py-5">
+        <div class="container">
+
+          @if (gallery.images && gallery.images.length > 0) {
+            <header class="d-flex align-items-center justify-content-between mb-3">
+              <h2 class="hs-service-detail__section-title m-0">Proyectos relacionados</h2>
+              <span class="hs-service-detail__hint d-none d-md-inline">Desliza →</span>
+            </header>
+
+            <div class="hs-sd-gallery__carousel" role="region" aria-label="Galería de imágenes">
+              @for (img of gallery.images; track img.src) {
+                <figure class="hs-sd-gallery__slide">
+                  <img [src]="img.src"
+                       [alt]="img.alt"
+                       loading="lazy"
+                       class="hs-sd-gallery__img" />
+                  @if (img.caption) {
+                    <figcaption class="hs-sd-gallery__caption">{{ img.caption }}</figcaption>
+                  }
+                </figure>
+              }
+            </div>
+          }
+
+          @if (gallery.videos && gallery.videos.length > 0) {
+            <header class="d-flex align-items-center mb-3 mt-4 mt-lg-5">
+              <h2 class="hs-service-detail__section-title m-0">Videos</h2>
+            </header>
+
+            <div class="hs-sd-gallery__videos">
+              @for (vid of gallery.videos; track vid.src) {
+                <figure class="hs-sd-gallery__video-wrap">
+                  <video [src]="vid.src"
+                         [poster]="vid.poster"
+                         controls
+                         preload="none"
+                         playsinline
+                         class="hs-sd-gallery__video">
+                  </video>
+                  @if (vid.title) {
+                    <figcaption class="hs-sd-gallery__caption">{{ vid.title }}</figcaption>
+                  }
+                </figure>
+              }
+            </div>
+          }
+
+        </div>
+      </section>
+    }
+
+    <!-- ============================================================
+         Servicios relacionados
+         ============================================================ -->
+    @if (relatedServices().length > 0) {
+      <section class="hs-service-detail__related py-5">
+        <div class="container">
+          <h2 class="hs-service-detail__section-title mb-4">Otros servicios que podrían interesarte</h2>
+          <div class="row g-3 g-md-4">
+            @for (rel of relatedServices(); track rel.id) {
+              <div class="col-12 col-md-4">
+                <a class="hs-service-detail__related-card d-block p-3 p-md-4"
+                   [routerLink]="['/servicios', rel.slug]">
+                  <p class="hs-service-detail__related-category m-0 mb-2">{{ rel.category }}</p>
+                  <h3 class="hs-service-detail__related-title mb-2">{{ rel.title }}</h3>
+                  <p class="hs-service-detail__related-summary m-0">{{ rel.summary }}</p>
+                  <span class="hs-service-detail__related-arrow">
+                    Ver detalle
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ms-1">
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                      <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            }
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- CTA final reutilizado -->
+    <app-cta-section />
+
+  </section>
+
 } @else {
-  <p>Detalle del servicio — pendiente</p>
+
+  <!-- ============================================================
+       Servicio no encontrado
+       ============================================================ -->
+  <section class="hs-service-detail__not-found py-5 py-lg-6">
+    <div class="container text-center">
+      <span class="hs-eyebrow d-inline-block mb-3">404 — Servicio</span>
+      <h1 class="hs-service-detail__title mb-3">No encontramos ese servicio.</h1>
+      <p class="hs-service-detail__summary mb-4 mx-auto">
+        Puede que el enlace esté desactualizado o que el servicio ya no exista.
+        Revisa el catálogo completo aquí abajo.
+      </p>
+      <a class="btn hs-service-detail__cta" routerLink="/servicios">
+        Ver todos los servicios
+      </a>
+    </div>
+  </section>
+
 }

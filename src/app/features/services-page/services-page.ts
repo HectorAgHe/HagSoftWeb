@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CatalogService } from '../../core/services/catalog.service';
+import { CatalogService, SHOW_PROJECT_GALLERY } from '../../core/services/catalog.service';
 import { CATEGORY_LABELS, ServiceCategory } from '../../core/models/service.model';
 import { CurrencyMxPipe } from '../../shared/pipes/currency-mx.pipe';
 import { CtaSection } from '../landing/components/cta-section/cta-section';
@@ -23,6 +23,9 @@ interface Tab {
 })
 export class ServicesPage {
   private readonly catalog = inject(CatalogService);
+
+  /** Feature flag de galería (controlado desde catalog.service.ts). */
+  readonly showGallery = SHOW_PROJECT_GALLERY;
 
   /** Tab activa — controla el filtrado. Default: todos. */
   readonly activeTab = signal<TabId>('all');

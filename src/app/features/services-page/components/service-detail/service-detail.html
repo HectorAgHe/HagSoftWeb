@@ -106,9 +106,12 @@
     </section>
 
     <!-- ============================================================
-         Galería (si existe)
+         Galería (si existe Y si SHOW_PROJECT_GALLERY = true en
+         catalog.service.ts). Mientras esté off, la sección no se
+         renderiza pero los datos siguen ahí.
          ============================================================ -->
-    @if (svc.gallery; as gallery) {
+    @if (showGallery) {
+      @if (svc.gallery; as gallery) {
       <section class="hs-service-detail__gallery-section py-5">
         <div class="container">
 
@@ -158,6 +161,7 @@
 
         </div>
       </section>
+      }
     }
 
     <!-- ============================================================

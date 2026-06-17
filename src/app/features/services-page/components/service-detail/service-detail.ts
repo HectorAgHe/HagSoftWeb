@@ -1,6 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CatalogService } from '../../../../core/services/catalog.service';
+import { CatalogService, SHOW_PROJECT_GALLERY } from '../../../../core/services/catalog.service';
 import { CATEGORY_LABELS, Service } from '../../../../core/models/service.model';
 import { CurrencyMxPipe } from '../../../../shared/pipes/currency-mx.pipe';
 import { CtaSection } from '../../../landing/components/cta-section/cta-section';
@@ -21,6 +21,9 @@ import { CtaSection } from '../../../landing/components/cta-section/cta-section'
 })
 export class ServiceDetail {
   private readonly catalog = inject(CatalogService);
+
+  /** Feature flag de galería (controlado desde catalog.service.ts). */
+  readonly showGallery = SHOW_PROJECT_GALLERY;
 
   /** Slug recibido desde la URL via withComponentInputBinding(). */
   readonly slug = input<string>('');

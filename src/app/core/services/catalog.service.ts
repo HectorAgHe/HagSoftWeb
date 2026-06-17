@@ -52,6 +52,23 @@ export class CatalogService {
  * Catálogo seed — servicios actuales + servicios en pipeline.
  * Datos del Documento de Empresa HagSoft v1.0.
  * ---------------------------------------------------------------- */
+/* ════════════════════════════════════════════════════════════════════════
+ *
+ *   🎨  MOSTRAR GALERÍA DE PROYECTOS (imágenes + videos)
+ *
+ *   Cuando tengas proyectos reales para mostrar:
+ *      1) Reemplaza los src de cada `gallery` de abajo con tus imágenes
+ *         y videos reales (sube a tu CDN o coloca en src/assets/).
+ *      2) Cambia este flag a `true`.
+ *      3) Las galerías aparecen automáticamente en /servicios y
+ *         /servicios/:slug — no tienes que tocar templates.
+ *
+ *   Mientras esto sea false, las galerías quedan ocultas pero los
+ *   datos siguen ahí intactos en cada service.gallery.
+ *
+ * ═══════════════════════════════════════════════════════════════════════ */
+export const SHOW_PROJECT_GALLERY = false;
+
 /* ----------------------------------------------------------------
  * Sample video público (Big Buck Bunny) — reemplazar con videos reales
  * cuando se tengan. Picsum.photos genera imágenes consistentes por seed.

@@ -646,10 +646,12 @@
           </div>
 
           <!-- ============================================================
-               Galería del servicio: carrusel de imágenes + videos
-               (datos mock por ahora — vienen de svc.gallery)
+               Galería del servicio: carrusel de imágenes + videos.
+               Visible solo si SHOW_PROJECT_GALLERY = true en
+               catalog.service.ts (constante con caja de comentario clara).
                ============================================================ -->
-          @if (svc.gallery; as gallery) {
+          @if (showGallery) {
+            @if (svc.gallery; as gallery) {
             <div class="hs-service-gallery mt-4 mt-lg-5">
 
               @if (gallery.images && gallery.images.length > 0) {
@@ -697,6 +699,7 @@
                 </div>
               }
             </div>
+            }
           }
 
         </article>

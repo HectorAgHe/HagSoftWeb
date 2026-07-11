@@ -16,12 +16,12 @@ import {
  *   y todo lo demás sigue funcionando.
  *
  * ═══════════════════════════════════════════════════════════════════════ */
-export const HAGSOFT_CONTACT_EMAIL = 'contacto@hagsoft.mx';
+export const HAGSOFT_CONTACT_EMAIL = 'contacto@hagsoft.dev';
 
 /* ────────────────────────────────────────────────────────────────────────
  * Número de WhatsApp para el botón flotante y CTAs. Cambia aquí también.
  * ──────────────────────────────────────────────────────────────────────── */
-export const HAGSOFT_WHATSAPP = '521000000000'; // formato: 52 + lada + número
+export const HAGSOFT_WHATSAPP = '525639752147'; // formato: 52 + lada + número
 
 /**
  * ContactService
@@ -111,7 +111,7 @@ export class ContactService {
       form.mensaje,
       '',
       '—',
-      'Enviado desde hagsoft.mx'
+      'Enviado desde hagsoft.dev'
     ];
     return lines.join('\n');
   }

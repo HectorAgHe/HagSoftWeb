@@ -17,7 +17,7 @@ interface Commitment {
 export class CtaSection {
   // TODO: leer environment.whatsappNumber
   readonly whatsappUrl =
-    'https://wa.me/521000000000?text=' +
+    'https://wa.me/525639752147?text=' +
     encodeURIComponent('Hola HagSoft, quiero saber más sobre sus servicios.');
 
   readonly commitments: readonly Commitment[] = [

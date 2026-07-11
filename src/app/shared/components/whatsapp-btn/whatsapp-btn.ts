@@ -13,5 +13,5 @@ import { Component } from '@angular/core';
 })
 export class WhatsappBtn {
   // TODO: leer environment.whatsappNumber
-  readonly whatsappUrl = 'https://wa.me/521000000000?text=Hola%20HagSoft';
+  readonly whatsappUrl = 'https://wa.me/525639752147?text=Hola%20HagSoft';
 }
